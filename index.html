@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> 🤪</title>
+<style>
+  body {
+    background: radial-gradient(circle at center, #ff5f6d, #ffc371);
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    font-family: "Comic Sans MS", cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: background 0.5s;
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: white;
+    text-shadow: 2px 2px 5px black;
+    animation: wiggle 1s infinite alternate;
+  }
+
+  @keyframes wiggle {
+    0% { transform: rotate(-4deg); }
+    100% { transform: rotate(4deg); }
+  }
+
+  img {
+    width: 400px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    transition: transform 0.4s ease;
+    cursor: pointer;
+  }
+
+  .laugh {
+    animation: laugh 0.1s infinite alternate;
+  }
+
+  @keyframes laugh {
+    0% { transform: rotate(-3deg) scale(1.05); }
+    100% { transform: rotate(3deg) scale(1.1); }
+  }
+
+  .emoji {
+    position: absolute;
+    font-size: 2.5rem;
+    animation: float 1.5s ease-out forwards;
+    pointer-events: none;
+  }
+
+  @keyframes float {
+    0% { opacity: 1; transform: scale(1) translateY(0); }
+    100% { opacity: 0; transform: scale(1.5) translateY(-100px); }
+  }
+</style>
+</head>
+<body>
+  <h1>🖕</h1>
+  <img id="troll" src="20251021_095901.jpg" alt="Troll Image">
+
+  <script>
+    const img = document.getElementById('troll');
+
+    img.addEventListener('click', () => {
+      // Foto ketawa dan membesar
+      img.classList.add('laugh');
+      img.style.transform = 'scale(1.5)';
+      document.body.style.background = 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00)';
+
+      // Munculkan emoji ejekan di layar random
+      for (let i = 0; i < 25; i++) {
+        const emoji = document.createElement('div');
+        emoji.className = 'emoji';
+        emoji.textContent = '🫵🖕😂';
+        emoji.style.left = Math.random() * 90 + 'vw';
+        emoji.style.top = Math.random() * 90 + 'vh';
+        emoji.style.fontSize = (Math.random() * 1.5 + 1.5) + 'rem';
+        emoji.style.animationDelay = (Math.random() * 0.5) + 's';
+        document.body.appendChild(emoji);
+
+        // Hapus setelah animasi selesai
+        setTimeout(() => emoji.remove(), 2000);
+      }
+
+      // Kembalikan ke normal setelah 4 detik
+      setTimeout(() => {
+        img.classList.remove('laugh');
+        img.style.transform = 'scale(1)';
+        document.body.style.background = 'radial-gradient(circle at center, #ff5f6d, #ffc371)';
+      }, 4000);
+    });
+  </script>
+</body>
+</html>
